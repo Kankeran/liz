@@ -3,13 +3,9 @@ package main
 import (
 	"flag"
 	"fmt"
+	"liz/builder"
+	"liz/kernel/container"
 	"os"
-
-	_ "github.com/joho/godotenv/autoload"
-
-	"Liz/builder"
-	_ "Liz/kernel/autoload"
-	"Liz/kernel/container"
 )
 
 func check(e error) {
@@ -55,7 +51,6 @@ func main() {
 		makeDir(*newPath)
 		check(os.Chdir(*buildPath))
 		container.Get("container_builder").(*builder.Container).Build()
-		break
 	default:
 		flag.Usage()
 		os.Exit(2)
@@ -67,35 +62,3 @@ func makeDir(path string) {
 		check(os.MkdirAll(path, os.ModePerm))
 	}
 }
-
-// func absPath(filename string) (string, error) {
-// 	eval, err := filepath.EvalSymlinks(filename)
-// 	if err != nil {
-// 		return "", err
-// 	}
-// 	return filepath.Abs(eval)
-// }
-
-// func fill() {
-// 	path, err := absPath("./")
-// 	if err != nil {
-// 		log.Fatal(err)
-// 	}
-
-// 	cfg := &packages.Config{
-// 		Mode:  packages.LoadAllSyntax,
-// 		Tests: true,
-// 		Dir:   filepath.Dir(path),
-// 		Fset:  token.NewFileSet(),
-// 		Env:   os.Environ(),
-// 	}
-
-// 	pkgs, err := packages.Load(cfg)
-// 	if err != nil {
-// 		log.Fatal(err)
-// 	}
-
-// 	for _, pkg := range pkgs {
-// 		fmt.Printf("%v\n", pkg)
-// 	}
-// }

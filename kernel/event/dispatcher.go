@@ -19,8 +19,8 @@ type dispatcher struct {
 }
 
 var dispatcherInstance = &dispatcher{
-make(chan *dispatchData),
-make(map[string]func(*Data)),
+	make(chan *dispatchData),
+	make(map[string]func(*Data)),
 }
 
 // Dispatch asynchronously call event by name
@@ -43,7 +43,7 @@ func Add(eventName string, listener func(*Data)) {
 	dispatcherInstance.add(eventName, listener)
 }
 
-func (d *dispatcher)add(eventName string, listener func(*Data)) {
+func (d *dispatcher) add(eventName string, listener func(*Data)) {
 	d.listeners[eventName] = listener
 }
 
@@ -61,12 +61,16 @@ func (d *dispatcher) run() {
 }
 
 func (d *dispatcher) dispatch(name string, data interface{}) {
-	if _, ok := d.listeners[name]; !ok {return}
+	if _, ok := d.listeners[name]; !ok {
+		return
+	}
 	d.eventChannel <- &dispatchData{&Data{name, data}, nil}
 }
 
 func (d *dispatcher) dispatchSync(name string, data interface{}) {
-	if _, ok := d.listeners[name]; !ok {return}
+	if _, ok := d.listeners[name]; !ok {
+		return
+	}
 	waitGroup := new(sync.WaitGroup)
 	waitGroup.Add(1)
 	d.eventChannel <- &dispatchData{&Data{name, data}, waitGroup}

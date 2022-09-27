@@ -1,8 +1,8 @@
 package autoload
 
 import (
-	"Liz/kernel/event"
-	"Liz/kernel/services"
+	"liz/kernel/event"
+	"liz/kernel/services"
 )
 
 func init() {

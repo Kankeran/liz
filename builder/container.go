@@ -1,10 +1,10 @@
 package builder
 
 import (
-	"Liz/domain"
-	"Liz/elements"
-	"Liz/generators"
-	"Liz/parsers"
+	"liz/domain"
+	"liz/elements"
+	"liz/generators"
+	"liz/parsers"
 )
 
 // Container builder struct

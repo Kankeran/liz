@@ -3,7 +3,7 @@ package generators
 import (
 	"fmt"
 
-	"Liz/elements"
+	"liz/elements"
 )
 
 // Service generator struct

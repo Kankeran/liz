@@ -1,4 +1,4 @@
-module Liz
+module liz
 
 go 1.13
 

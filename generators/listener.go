@@ -1,7 +1,7 @@
 package generators
 
 import (
-	"Liz/elements"
+	"liz/elements"
 )
 
 // Listener generator struct
